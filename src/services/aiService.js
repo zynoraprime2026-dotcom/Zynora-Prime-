@@ -41,12 +41,6 @@ const aiService = {
         content: message,
       });
 
-      // Add agent context to the prompt if available
-      let enhancedMessage = message;
-      if (Object.keys(agentContext).length > 0) {
-        enhancedMessage += `\n\n[Agent Context: ${JSON.stringify(agentContext)}]`;
-      }
-
       // Call OpenAI API
       const response = await openai.chat.completions.create({
         model: MODEL,

@@ -1,13 +1,13 @@
 /**
  * Memory Service
- * Manages user conversation history and memory storage
+ * Manages user-specific conversation history and memory storage
  * In-memory storage (can be replaced with a database)
  */
 
 const { logger } = require('../utils/logger');
 
 const MAX_MEMORY_PER_USER = parseInt(process.env.MAX_MEMORY_PER_USER) || 50;
-const userMemory = {}; // In-memory storage: { userId: [{ role, content, timestamp }] }
+const userMemory = {}; // User-specific memory: { userId: [{ role, content, timestamp }] }
 
 const memoryService = {
   // Initialize memory for a new user

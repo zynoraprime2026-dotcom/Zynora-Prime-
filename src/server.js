@@ -1,5 +1,5 @@
 /**
- * Entry point for the Adaptive AI Engine System (AAES)
+ * Entry point for the Zynora AI Full-Stack System
  * Initializes the Express server and starts listening for requests
  */
 
@@ -10,8 +10,9 @@ const PORT = process.env.PORT || 3000;
 const HOST = process.env.HOST || 'localhost';
 
 const server = app.listen(PORT, HOST, () => {
-  logger.info(`🚀 Adaptive AI Engine System (AAES) running on http://${HOST}:${PORT}`);
+  logger.info(`🚀 Zynora AI Full-Stack System running on http://${HOST}:${PORT}`);
   logger.info(`📝 Environment: ${process.env.NODE_ENV || 'development'}`);
+  logger.info(`🔐 Authentication enabled with JWT`);
 });
 
 // Graceful shutdown

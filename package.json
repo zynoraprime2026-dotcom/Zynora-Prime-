@@ -1,7 +1,7 @@
 {
-  "name": "adaptive-ai-engine-system",
+  "name": "zynora-ai-full-stack",
   "version": "1.0.0",
-  "description": "Self-evolving AI engine system with user-based memory and dynamic agent generation",
+  "description": "Full-stack AI engine system with React frontend and Node.js backend",
   "main": "src/server.js",
   "scripts": {
     "start": "node src/server.js",
@@ -11,10 +11,10 @@
   "keywords": [
     "ai",
     "openai",
-    "adaptive",
-    "engine",
-    "memory",
-    "agent"
+    "react",
+    "express",
+    "authentication",
+    "jwt"
   ],
   "author": "Zynora Prime",
   "license": "MIT",
@@ -23,7 +23,9 @@
     "dotenv": "^16.3.1",
     "openai": "^4.24.1",
     "cors": "^2.8.5",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "jsonwebtoken": "^9.1.2",
+    "bcryptjs": "^2.4.3"
   },
   "devDependencies": {
     "nodemon": "^3.0.1"

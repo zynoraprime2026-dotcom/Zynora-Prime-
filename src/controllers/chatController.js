@@ -1,6 +1,6 @@
 /**
- * Chat controller
- * Handles chat request logic and orchestrates AI and memory services
+ * Chat Controller
+ * Handles chat request logic with user-specific memory
  */
 
 const { logger } = require('../utils/logger');
@@ -10,10 +10,19 @@ const { agentGenerator } = require('../ai/agentGenerator');
 
 const chatController = {
   handleChat: async (req, res) => {
-    const { userId, message } = req.body;
+    const userId = req.userId; // From JWT token
+    const { message } = req.body;
 
     try {
       logger.info(`Processing chat for user: ${userId}`);
+
+      // Validate message
+      if (!message || typeof message !== 'string' || message.trim() === '') {
+        return res.status(400).json({
+          success: false,
+          error: 'Message is required',
+        });
+      }
 
       // Retrieve user's conversation history
       const userMemory = memoryService.getUserMemory(userId);
