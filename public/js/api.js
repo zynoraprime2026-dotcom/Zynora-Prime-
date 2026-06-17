@@ -1,5 +1,9 @@
-// API Configuration and Utilities
-const API_BASE_URL = 'http://localhost:3000';
+/**
+ * Frontend API Configuration for Production
+ * Automatically uses environment variable for backend URL
+ */
+
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:3000';
 
 const api = axios.create({
     baseURL: API_BASE_URL,
@@ -16,6 +20,19 @@ api.interceptors.request.use((config) => {
     }
     return config;
 });
+
+// Handle errors
+api.interceptors.response.use(
+    (response) => response,
+    (error) => {
+        if (error.response?.status === 401) {
+            // Token expired or invalid
+            localStorage.removeItem('token');
+            window.location.href = '/?page=login';
+        }
+        return Promise.reject(error);
+    }
+);
 
 // Auth API calls
 const authAPI = {
