@@ -15,6 +15,7 @@ const { errorHandler } = require('./middleware/errorHandler');
 const healthRoutes = require('./routes/health');
 const authRoutes = require('./routes/auth');
 const chatRoutes = require('./routes/chat');
+const agentRoutes = require('./routes/agents');
 
 const app = express();
 
@@ -55,6 +56,7 @@ if (process.env.NODE_ENV === 'production') {
 app.use('/health', healthRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/chat', chatRoutes);
+app.use('/api/agents', agentRoutes);
 
 // Serve frontend on root (SPA fallback)
 if (process.env.NODE_ENV === 'production') {

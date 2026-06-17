@@ -1,9 +1,10 @@
-// Main App Component
+// Updated Main App Component with Agent Builder
 const App = () => {
     const [isAuthenticated, setIsAuthenticated] = React.useState(tokenUtils.isAuthenticated());
     const [user, setUser] = React.useState(null);
     const [loading, setLoading] = React.useState(true);
     const [currentPage, setCurrentPage] = React.useState('login');
+    const [showAgentBuilder, setShowAgentBuilder] = React.useState(false);
 
     React.useEffect(() => {
         checkAuth();
@@ -60,7 +61,11 @@ const App = () => {
         );
     }
 
-    return <ChatInterface user={user} onLogout={handleLogout} />;
+    if (showAgentBuilder) {
+        return <AgentBuilder user={user} onClose={() => setShowAgentBuilder(false)} />;
+    }
+
+    return <ChatInterface user={user} onLogout={handleLogout} onOpenAgentBuilder={() => setShowAgentBuilder(true)} />;
 };
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

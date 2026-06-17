@@ -1,5 +1,5 @@
-// Chat Interface Component
-const ChatInterface = ({ user, onLogout }) => {
+// Updated Chat Interface Component with Agent Builder Button
+const ChatInterface = ({ user, onLogout, onOpenAgentBuilder }) => {
     const [messages, setMessages] = React.useState([]);
     const [input, setInput] = React.useState('');
     const [loading, setLoading] = React.useState(false);
@@ -61,10 +61,17 @@ const ChatInterface = ({ user, onLogout }) => {
         <div style={styles.container}>
             {/* Sidebar */}
             <div style={styles.sidebar}>
-                <h2 style={styles.sidebarTitle}>Zynora AI Engine</h2>
+                <h2 style={styles.sidebarTitle}>Zynora AI</h2>
                 <div style={styles.userInfo}>
                     <p style={styles.userEmail}>{user?.email}</p>
-                    <button onClick={onLogout} style={styles.logoutButton}>Logout</button>
+                    <div style={styles.buttonGroup}>
+                        <button onClick={onOpenAgentBuilder} style={styles.agentBuilderButton}>
+                            🤖 AI Agents
+                        </button>
+                        <button onClick={onLogout} style={styles.logoutButton}>
+                            Logout
+                        </button>
+                    </div>
                 </div>
                 <div style={styles.chatHistorySection}>
                     <h3 style={styles.chatHistoryTitle}>Chat History</h3>
@@ -180,6 +187,22 @@ const styles = {
         color: '#888',
         marginBottom: '10px',
         wordBreak: 'break-all',
+    },
+    buttonGroup: {
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '8px',
+    },
+    agentBuilderButton: {
+        padding: '8px 12px',
+        border: '1px solid #00d9ff',
+        borderRadius: '4px',
+        background: 'transparent',
+        color: '#00d9ff',
+        cursor: 'pointer',
+        fontSize: '12px',
+        transition: 'all 0.3s',
+        fontWeight: 'bold',
     },
     logoutButton: {
         padding: '8px 12px',
